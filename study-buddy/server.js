@@ -1,22 +1,30 @@
+require('dotenv').config();
 const express = require('express');
-const dotenv = require('dotenv');
-const path = require('path');
-
-dotenv.config({ path: path.resolve(__dirname, '.env') });
+const cors = require('cors');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3001;
 
-app.use(express.static(__dirname));
+app.use(cors());
+app.use(express.json());
 
-app.get('/api/key', (req, res) => {
-  res.json({ apiKey: process.env.GEMINI_API_KEY });
-});
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+app.post('/api/generate', async (req, res) => {
+    try {
+        const { prompt } = req.body;
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = response.text();
+        res.json({ text });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to generate content' });
+    }
 });
 
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+    console.log(`Server is running on port ${port}`);
 });

@@ -1,0 +1,23 @@
+.feature-selection {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.feature-buttons button {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    margin: 0.5rem;
+    cursor: pointer;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.feature-buttons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}

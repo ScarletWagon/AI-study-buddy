@@ -1,0 +1,102 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(120deg, #23272e 0%, #1a1d22 100%);
+    color: #e3e3e3;
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.App.app-layout {
+    display: flex;
+    min-height: 100vh;
+    background: transparent;
+    width: 100vw;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin-left: 240px; /* width of sidebar */
+    background: transparent;
+    position: relative;
+    border-left: 1.5px solid rgba(120,130,150,0.13);
+    transition: border-color 0.3s;
+    width: calc(100vw - 240px);
+    max-width: 100vw;
+}
+
+.main-content:focus-within {
+    border-left: 2px solid #7c8a97;
+}
+
+/* Remove boxy backgrounds */
+
+@media (max-width: 900px) {
+    .App.app-layout {
+        flex-direction: column;
+    }
+    .main-content {
+        margin-left: 0;
+        width: 100vw;
+        border-left: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .sidebar {
+        position: relative;
+        width: 100vw;
+        min-height: unset;
+        border-right: none;
+        border-bottom: 1.5px solid rgba(120,130,150,0.13);
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 0.5rem;
+    }
+    .sidebar-title {
+        padding: 1rem 0.5rem;
+        font-size: 1.1rem;
+    }
+    .sidebar-nav {
+        flex-direction: row;
+        gap: 0.5rem;
+        padding: 0.5rem 0.5rem;
+    }
+    .sidebar-nav button {
+        font-size: 0.95rem;
+        padding: 0.5rem 0.8rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .content-area, .feature-container {
+        padding: 1rem 0.2rem !important;
+        max-width: 100vw;
+    }
+    .chat-window {
+        max-height: 30vh;
+    }
+    .chat-bubble {
+        font-size: 0.98rem;
+        padding: 0.7rem 0.7rem;
+    }
+    .chat-input-row textarea {
+        font-size: 0.98rem;
+        padding: 0.5rem 0.5rem;
+    }
+    .chat-input-row button {
+        font-size: 0.95rem;
+        padding: 0.5rem 0.7rem;
+    }
+}
